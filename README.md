@@ -1,21 +1,24 @@
-# React Portfolio Page
+# React Portfolio
 
-A single page portfolio application built with React. Focused on component structure, custom hooks and client side form validation.
+A single-page developer portfolio built with React, Chakra UI, Formik, and Yup.
 
 ## Features
 
-- **Header:** Smooth section scrolling and dynamic show/hide behavior based on scroll direction.
-- **Projects section:** Responsive grid of project cards.
-- **Contact form:** Form validation and simulated API submission handled via a custom hook (`useSubmit`) and React Context for toast alerts.
+- Sticky header that hides on scroll down and reappears on scroll up
+- Smooth scrolling navigation between sections
+- Featured projects grid with links to GitHub repositories
+- Contact form with Formik + Yup validation and alert feedback
 
-## Structure
+## Tech Stack
 
-```text
-src/
-  components/   Page sections and UI cards (Header, Landing, Projects, ContactMe, Footer)
-  context/      Global alert notification state
-  hooks/        Custom hook for async form submission
+- React
+- Chakra UI
+- Formik & Yup
+- FontAwesome
 
-How to run
+## Getting Started
+
+```bash
 npm install
 npm start
+```

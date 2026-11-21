@@ -1,45 +1,35 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import {
-  faGithub,
-  faLinkedin,
-  faMedium,
-  faStackOverflow,
-} from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { Box, HStack } from "@chakra-ui/react";
 
 const socials = [
   {
     icon: faEnvelope,
-    url: "mailto: hello@example.com",
+    url: "mailto:subuwik@gmail.com",
+    label: "Email",
   },
   {
     icon: faGithub,
-    url: "https://github.com",
+    url: "https://github.com/subuwik",
+    label: "GitHub",
   },
   {
     icon: faLinkedin,
-    url: "https://www.linkedin.com",
-  },
-  {
-    icon: faMedium,
-    url: "https://medium.com",
-  },
-  {
-    icon: faStackOverflow,
-    url: "https://stackoverflow.com",
+    url: "https://www.linkedin.com/in/mihails-%C5%A1toliks-b8b8932b9/",
+    label: "LinkedIn",
   },
 ];
 
 const Header = () => {
-  const [transform, setTransform] = React.useState("translateY(0)");
+  const [transform, setTransform] = useState("translateY(0)");
   const prevScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      if (currentScrollY > prevScrollY.current) {
+      if (currentScrollY > prevScrollY.current && currentScrollY > 50) {
         setTransform("translateY(-200px)");
       } else {
         setTransform("translateY(0)");
@@ -53,7 +43,8 @@ const Header = () => {
     };
   }, []);
 
-  const handleClick = (anchor) => () => {
+  const handleClick = (anchor) => (e) => {
+    e.preventDefault();
     const id = `${anchor}-section`;
     const element = document.getElementById(id);
     if (element) {
@@ -87,7 +78,13 @@ const Header = () => {
           <nav>
             <HStack spacing={8}>
               {socials.map((social) => (
-                <a key={social.url} href={social.url} target="_blank" rel="noopener noreferrer">
+                <a
+                  key={social.url}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                >
                   <FontAwesomeIcon icon={social.icon} size="2x" />
                 </a>
               ))}
@@ -95,10 +92,10 @@ const Header = () => {
           </nav>
           <nav>
             <HStack spacing={8}>
-              <a href="/#projects" onClick={handleClick("projects")}>
+              <a href="#projects-section" onClick={handleClick("projects")}>
                 Projects
               </a>
-              <a href="/#contact-me" onClick={handleClick("contactme")}>
+              <a href="#contactme-section" onClick={handleClick("contactme")}>
                 Contact Me
               </a>
             </HStack>
@@ -108,4 +105,5 @@ const Header = () => {
     </Box>
   );
 };
+
 export default Header;
